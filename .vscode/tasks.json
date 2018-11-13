@@ -1,0 +1,66 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compilar Jogo(x86)",
+            "type": "shell",
+            "command": "Dependencias\\x86\\MinGW\\bin\\g++.exe",
+            "args": [
+                "-o",
+                "bin\\x86\\asteroids_remake.exe",
+                
+                "-g",
+                "-Wall",
+                "-mwindows",
+                
+                "-IDependencias\\x86\\SFML\\include",
+                
+                "Source\\object.cpp",
+                "Source\\main.cpp",
+                
+                "-LDependencias\\x86\\SFML\\lib",
+                "-lsfml-graphics",
+                "-lsfml-window",
+                "-lsfml-system",
+                
+                "-std=c++11"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Compilar Jogo(x64)",
+            "type": "shell",
+            "command": "Dependencias\\x64\\MinGW\\bin\\g++.exe",
+            "args": [
+                "-o",
+                "bin\\x64\\asteroids_remake.exe",
+                
+                "-g",
+                "-Wall",
+                // "-mwindows",
+                
+                "-IDependencias\\x64\\SFML\\include",
+                
+                "Source\\main.cpp",
+                
+                "-LDependencias\\x64\\SFML\\lib",
+                "-lsfml-graphics",
+                "-lsfml-window",
+                "-lsfml-system",
+                
+                "-std=c++11"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
