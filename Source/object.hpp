@@ -1,5 +1,5 @@
 /*
-    Sargittarius 2 - Game about arrows and weird laws of gravity
+    Asteroids Remake - Asteroids with multiplayer and dynamic windows
     Copyright (C) 2018 - João Francisco Cocca Fukuda
 
     This program is free software: you can redistribute it and/or modify

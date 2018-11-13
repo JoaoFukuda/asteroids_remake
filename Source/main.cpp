@@ -1,5 +1,5 @@
 /*
-    Sargittarius 2 - Game about arrows and weird laws of gravity
+    Asteroids Remake - Asteroids with multiplayer and dynamic windows
     Copyright (C) 2018 - João Francisco Cocca Fukuda
 
     This program is free software: you can redistribute it and/or modify
@@ -18,17 +18,13 @@
     If in any doubts, contact me at <joao.fukuda@usp.br>
  */
 
-//        |
-// Needed V (I already forgot it's purpose, but keep it)
 #define SFML_STATIC
 
-// Include on sub-files later on (this is just a placeholder for now... or not)
 #include <SFML/Window.hpp>
 #include "object.hpp"
 
 int main()
 {
-    // Game main window
     sf::VideoMode desktopWindowMode = sf::VideoMode::getDesktopMode();
     unsigned int DESKTOP_WIDTH, DESKTOP_HEIGHT;
     DESKTOP_WIDTH = desktopWindowMode.width;
@@ -37,10 +33,8 @@ int main()
     Ship ship = Ship(DESKTOP_WIDTH, DESKTOP_HEIGHT);
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Ship #1", sf::Style::None);
 
-    // Game main loop
     while(window.isOpen())
     {
-        // Event handling
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -48,7 +42,6 @@ int main()
                 window.close();
         }
 
-        // Input handling at it's best
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) window.close();
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ship.rotation -= 0.5;
@@ -60,9 +53,6 @@ int main()
                 sin(ship.rotation*2*PI/360) * 0.0006
             );
         }
-
-        // Clear and display window (very self-explanatory)
-        // Anything that needs to be drawn needs to be drawn in between those two commands
 
         ship.Update();
 
