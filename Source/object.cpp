@@ -24,6 +24,7 @@ Ship::Ship(int x, int y)
 {
     width = x;
     height = y;
+    sf::RenderWindow window(sf::VideoMode(width, height), "Ship #1", sf::Style::None);
     position = sf::Vector2f(x/2, y/2);
     velocity = sf::Vector2f(0, 0);
     scale = 10;
@@ -46,6 +47,11 @@ Ship::Ship(int x, int y)
     )*scale);
 }
 
+sf::RenderWindow Ship::getWindow()
+{
+    return window;
+}
+
 bool Ship::Update()
 {
     position = position + velocity;
@@ -56,7 +62,7 @@ bool Ship::Update()
     return false;
 }
 
-sf::ConvexShape Ship::Draw(sf::RenderWindow *window)
+void Ship::Draw()
 {
     int x, y;
     x = position.x - WINDOW_WIDTH/2;
@@ -67,8 +73,11 @@ sf::ConvexShape Ship::Draw(sf::RenderWindow *window)
     else if(y >= height-WINDOW_HEIGHT) y = height-WINDOW_HEIGHT;
 
     view.setCenter(sf::Vector2f(x + WINDOW_WIDTH/2, y + WINDOW_HEIGHT/2));
-    window->setPosition(sf::Vector2i(x, y));
+    window.setPosition(sf::Vector2i(x, y));
     shape.setRotation(rotation);
     shape.setPosition(position);
-    return shape;
+    window.clear();
+    window.draw(shape);
+    window.setView(view);
+    window.display();
 }

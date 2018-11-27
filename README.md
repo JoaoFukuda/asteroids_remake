@@ -18,5 +18,3 @@ To tisti
 * 
 * 
 * 
-###### Press [F] to pay respect
-###### Rest In Peace, **Stan Lee**

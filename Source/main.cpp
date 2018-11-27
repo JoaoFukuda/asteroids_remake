@@ -31,18 +31,19 @@ int main()
     DESKTOP_HEIGHT = desktopWindowMode.height;
 
     Ship ship = Ship(DESKTOP_WIDTH, DESKTOP_HEIGHT);
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Ship #1", sf::Style::None);
 
-    while(window.isOpen())
+    //TODO: Make the main loop through the score window (not yet implemented)
+
+    while(ship.getWindow().isOpen())
     {
         sf::Event event;
-        while (window.pollEvent(event))
+        while (ship.getWindow().pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                window.close();
+                ship.getWindow().close();
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) window.close();
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) ship.getWindow().close();
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ship.rotation -= 0.5;
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ship.rotation += 0.5;
@@ -55,13 +56,7 @@ int main()
         }
 
         ship.Update();
-
-        window.clear();
-
-        window.draw(ship.Draw(&window));
-
-        window.setView(ship.view);
-        window.display();
+        ship.Draw();
     }
 
     return 0;

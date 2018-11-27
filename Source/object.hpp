@@ -28,10 +28,14 @@
 
 class Ship
 {
+    //TODO: Make a way to give every ship their unique id (1, 2, 3, ...)
 private:
-    sf::ConvexShape shape;
+    sf::ConvexShape shape;      //The shape of the ship (i tried making a non-equilateral triangle)
+    sf::RenderWindow window;    //This ship's window
 
-    int width, height;
+    int width, height;          //The height and width of the display
+    int id;                     // Ship's unique id
+    int score;                  // Player's score
 public:
     sf::View view;
 
@@ -41,6 +45,8 @@ public:
 
     Ship(int x, int y);
 
+    sf::RenderWindow getWindow();
+
     bool Update();
-    sf::ConvexShape Draw(sf::RenderWindow *window);
+    void Draw();
 };
