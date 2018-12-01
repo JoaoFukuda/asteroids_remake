@@ -1,4 +1,19 @@
 {
+    "todohighlight.include": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.html",
+        "**/*.php",
+        "**/*.css",
+        "**/*.scss",
+        "**/*.cpp",
+        "**/*.hpp",
+        "**/*.md",
+        "**/*.h",
+        "**/*.c"
+    ],
     "files.associations": {
         "array": "cpp",
         "atomic": "cpp",

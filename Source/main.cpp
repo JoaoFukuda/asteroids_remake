@@ -36,15 +36,40 @@ int main()
 
     //If operational system is unix, then promot this
     #ifdef __unix__
-    std::cout << "Are you using multiple monitors? (y/n) >";
-    std::string a;
-    std::getline(std::cin, a);
-    if(a == "y")
-    {
-        std::cout << "Place the mouse at the top left corner of your screen, then press enter to continue ...";
-        std::cin.get();
-        ship.setMonitorOffset(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
-    }
+        sf::RenderWindow prompt(sf::VideoMode(640, 480), "Are you using a multi-monitor setup?", sf::Style::Default);
+        sf::Font font;
+        if(!font.loadFromFile("./Media/Fonts/FreeMono.ttf"))
+        {
+            prompt.close();
+        }
+        sf::Text yup, nop;
+        yup.setFont(font);
+        nop.setFont(font);
+        yup.setString("yup");
+        nop.setString("nop");
+        yup.setCharacterSize(30);
+        nop.setCharacterSize(30);
+        yup.setFillColor(sf::Color::White);
+        nop.setFillColor(sf::Color::White);
+        yup.setPosition(160, 240);
+        nop.setPosition(480, 240);
+        prompt.clear();
+        prompt.draw(yup);
+        prompt.draw(nop);
+        prompt.display();
+        while(prompt.isOpen())
+        {
+            sf::Event event;
+            while (prompt.pollEvent(event)){}
+            if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            {
+                if(sf::Mouse::getPosition().x > 320)
+                {
+                    //TODO: Set offset
+                }
+                prompt.close();
+            }
+        }
     #endif
 
     while(ship.isOpen())
@@ -53,6 +78,12 @@ int main()
         ship.Update();
         ship.Draw();
     }
+
+    #ifdef __unix__
+        system("clear");
+    #else
+        system("cls");
+    #endif
 
     return 0;
 }

@@ -25,6 +25,7 @@ Ship::Ship(int x, int y)
     width = x;
     height = y;
     window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Ship #1", sf::Style::None);
+    window.setFramerateLimit(1000);
     monitorOffset = sf::Vector2i(0, 0);
     position = sf::Vector2f(x/2, y/2);
     velocity = sf::Vector2f(0, 0);
