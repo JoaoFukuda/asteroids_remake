@@ -24,7 +24,8 @@ Ship::Ship(int x, int y)
 {
     width = x;
     height = y;
-    window.create(sf::VideoMode(width, height), "Ship #1", sf::Style::None);
+    window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Ship #1", sf::Style::None);
+    monitorOffset = sf::Vector2i(0, 0);
     position = sf::Vector2f(x/2, y/2);
     velocity = sf::Vector2f(0, 0);
     scale = 10;
@@ -45,6 +46,11 @@ Ship::Ship(int x, int y)
         cos(rotation + PI*3/4),
         sin(rotation + PI*3/4)
     )*scale);
+}
+
+void Ship::setMonitorOffset(int x, int y)
+{
+    monitorOffset = sf::Vector2i(x, y);
 }
 
 void Ship::InputHandler()
@@ -95,7 +101,7 @@ void Ship::Draw()
     else if(y >= height-WINDOW_HEIGHT) y = height-WINDOW_HEIGHT;
 
     view.setCenter(sf::Vector2f(x + WINDOW_WIDTH/2, y + WINDOW_HEIGHT/2));
-    window.setPosition(sf::Vector2i(x, y));
+    window.setPosition(sf::Vector2i(x, y) + monitorOffset);
     shape.setRotation(rotation);
     shape.setPosition(position);
     window.clear();

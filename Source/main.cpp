@@ -34,15 +34,25 @@ int main()
 
     //TODO: Make the main loop through the score window (not yet implemented)
 
+    //If operational system is unix, then promot this
+    #ifdef __unix__
+    std::cout << "Are you using multiple monitors? (y/n)";
+    char a;
+    std::cin >> a;
+    if(a == 'y')
+    {
+        std::cout << "Place the mouse at the top left corner of your screen, then press enter to continue ...";
+        std::cin.get();
+        ship.setMonitorOffset(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+    }
+    #endif
+
     while(ship.isOpen())
     {
         ship.InputHandler();
         ship.Update();
         ship.Draw();
     }
-
-    std::cout << "Press enter to continue ...";
-    std::cin.get();
 
     return 0;
 }

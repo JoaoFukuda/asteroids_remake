@@ -33,6 +33,7 @@ class Ship
 private:
     sf::ConvexShape shape;      //The shape of the ship (i tried making a non-equilateral triangle)
     sf::RenderWindow window;    //This ship's window
+    sf::Vector2i monitorOffset;
 
     int width, height;          //The height and width of the display
     int id;                     // Ship's unique id
@@ -46,7 +47,7 @@ public:
 
     Ship(int x, int y);
 
-    sf::RenderWindow getWindow();
+    void setMonitorOffset(int x, int y);
 
     bool Update();
     void Draw();
