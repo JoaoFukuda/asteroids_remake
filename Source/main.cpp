@@ -30,34 +30,19 @@ int main()
     DESKTOP_WIDTH = desktopWindowMode.width;
     DESKTOP_HEIGHT = desktopWindowMode.height;
 
-    Ship ship = Ship(DESKTOP_WIDTH, DESKTOP_HEIGHT);
+    Ship ship(DESKTOP_WIDTH, DESKTOP_HEIGHT);
 
     //TODO: Make the main loop through the score window (not yet implemented)
 
-    while(ship.getWindow().isOpen())
+    while(ship.isOpen())
     {
-        sf::Event event;
-        while (ship.getWindow().pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                ship.getWindow().close();
-        }
-
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) ship.getWindow().close();
-
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ship.rotation -= 0.5;
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ship.rotation += 0.5;
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-        {
-            ship.velocity = ship.velocity + sf::Vector2f(
-                cos(ship.rotation*2*PI/360) * 0.0006,
-                sin(ship.rotation*2*PI/360) * 0.0006
-            );
-        }
-
+        ship.InputHandler();
         ship.Update();
         ship.Draw();
     }
+
+    std::cout << "Press enter to continue ...";
+    std::cin.get();
 
     return 0;
 }

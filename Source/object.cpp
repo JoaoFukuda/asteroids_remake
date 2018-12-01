@@ -24,7 +24,7 @@ Ship::Ship(int x, int y)
 {
     width = x;
     height = y;
-    sf::RenderWindow window(sf::VideoMode(width, height), "Ship #1", sf::Style::None);
+    window.create(sf::VideoMode(width, height), "Ship #1", sf::Style::None);
     position = sf::Vector2f(x/2, y/2);
     velocity = sf::Vector2f(0, 0);
     scale = 10;
@@ -47,9 +47,31 @@ Ship::Ship(int x, int y)
     )*scale);
 }
 
-sf::RenderWindow Ship::getWindow()
+void Ship::InputHandler()
 {
-    return window;
+    sf::Event event;
+    while (window.pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+            window.close();
+    }
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) window.close();
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) rotation -= 0.5;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) rotation += 0.5;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    {
+        velocity = velocity + sf::Vector2f(
+            cos(rotation*2*PI/360) * 0.0006,
+            sin(rotation*2*PI/360) * 0.0006
+        );
+    }
+}
+
+bool Ship::isOpen()
+{
+    return window.isOpen();
 }
 
 bool Ship::Update()

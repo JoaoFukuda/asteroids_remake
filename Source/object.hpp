@@ -21,6 +21,7 @@
 #define WINDOW_WIDTH 150
 #define WINDOW_HEIGHT 150
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 
 #include <math.h>
@@ -49,4 +50,6 @@ public:
 
     bool Update();
     void Draw();
+    void InputHandler();
+    bool isOpen();
 };
