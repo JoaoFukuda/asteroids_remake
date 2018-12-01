@@ -36,10 +36,10 @@ int main()
 
     //If operational system is unix, then promot this
     #ifdef __unix__
-    std::cout << "Are you using multiple monitors? (y/n)";
-    char a;
-    std::cin >> a;
-    if(a == 'y')
+    std::cout << "Are you using multiple monitors? (y/n) >";
+    std::string a;
+    std::getline(std::cin, a);
+    if(a == "y")
     {
         std::cout << "Place the mouse at the top left corner of your screen, then press enter to continue ...";
         std::cin.get();

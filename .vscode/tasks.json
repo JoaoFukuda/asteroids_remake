@@ -39,7 +39,7 @@
             "command": "g++",
             "args": [
                 "-o",
-                "./bin/Linux/asteroids_remake.exe",
+                "./bin/Linux/asteroids_remake",
                 
                 "-g",
                 "-Wall",
